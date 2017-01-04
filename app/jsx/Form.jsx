@@ -3,6 +3,14 @@ import ReactDOM from 'react-dom';
 
 export class Form extends React.Component {
   render() {
-    return <h1>Form</h1>
+    if(this.props.task) {
+      return (
+        <form>
+          <label>Activity </label>
+          <input type="text" placeholder="Activity" value={this.props.task.desc}></input>
+          <button>Save</button>
+        </form>
+      )
+    } else {  return null }
   }
 }
