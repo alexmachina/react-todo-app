@@ -8,23 +8,23 @@ export class List extends React.Component {
 
 
   render() {
-
-    let tbody = this.props.tasks.map(t => {return (
-      <tr key={t._id}>
-        <td>{t.desc}</td>
+    let tbody = null;
+    if(this.props.tasks) {
+      tbody = this.props.tasks.map(t => {return (
+        <tr key={t._id}>
+          <td>{t.desc}</td>
 
           <td>
             <button onClick={()=> this.props.onEditClick(t)}>E</button>
           </td>
 
-        <td>
-          <button onClick={()=> this.delete(t)}>X</button>
-        </td>
+          <td>
+            <button onClick={()=> this.props.onDeleteClick(t)}>X</button>
+          </td>
 
-
-      </tr>
-    )});
-
+        </tr>
+      )});
+    }
     return (
       <table>
         <thead>
