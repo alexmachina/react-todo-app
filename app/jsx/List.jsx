@@ -15,29 +15,29 @@ export class List extends React.Component {
           <td>{t.desc}</td>
 
           <td>
-            <button onClick={()=> this.props.onEditClick(t)}>E</button>
+            <button className="btn btn-default form-control" onClick={()=> this.props.onEditClick(t)}>Edit</button>
           </td>
 
           <td>
-            <button onClick={()=> this.props.onDeleteClick(t)}>X</button>
+            <button className="btn btn-danger form-control" onClick={()=> this.props.onDeleteClick(t)}>X</button>
           </td>
 
         </tr>
       )});
     }
     return (
-      <table>
-        <thead>
-          <tr>
-            <th>Task</th>
-            <th>Edit</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {tbody}
-        </tbody>
-      </table>
+        <table className="text-left table table-stripped">
+          <thead>
+            <tr>
+              <th>Task</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tbody}
+          </tbody>
+        </table>
     );
 
   }

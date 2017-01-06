@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 export class Form extends React.Component {
   constructor(props) {
@@ -10,8 +9,11 @@ export class Form extends React.Component {
   }
 
   componentWillReceiveProps(props) {
-    this.setState({_id: props.task._id, desc: props.task.desc});
+    if(props.task) {
+      this.setState({_id: props.task._id, desc: props.task.desc});
+    }
   }
+
   handleSubmit(e) {
     e.preventDefault();
     this.props.onFormSubmit(this.state);
@@ -25,12 +27,19 @@ export class Form extends React.Component {
 
 
       return (
-        <form onSubmit={this.handleSubmit.bind(this)}>
-          <label>Activity </label>
-          <input type="text" onChange={this.handleActivityChange} placeholder="Activity" value={this.state.desc}></input>
-          <input type="submit" value="Salvar"/>
-          
-        </form>
+        <div className="col-md-12 row">
+          <form onSubmit={this.handleSubmit.bind(this)}>
+            <div className="fieldset">
+              <label>Activity </label>
+              <input className="form-control" type="text" onChange={this.handleActivityChange} placeholder="Activity" value={this.state.desc}></input>
+            </div>
+
+            <div className="fieldset">
+              <input className="btn btn-primary" type="submit" value="Save"/>
+            </div>
+
+          </form>
+        </div>
       )
     } else {  return null }
   }
