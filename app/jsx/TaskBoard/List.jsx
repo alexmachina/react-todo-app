@@ -1,9 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
+import BootstrapDialog from 'bootstrap3-dialog';
+
 
 export class List extends React.Component {
   sayHello(task) {
     alert("Hello " + task);
+  }
+
+  onDeleteClick(t) {
+    BootstrapDialog.confirm('Delete task?', (conf) => {
+      if(conf) 
+        this.props.onDeleteClick(t);
+    });
   }
 
 
@@ -19,13 +28,17 @@ export class List extends React.Component {
           </td>
 
           <td>
-            <button className="btn btn-danger form-control" onClick={()=> this.props.onDeleteClick(t)}>X</button>
+
+            <a data-toggle="modal" href="#task-delete-confirm">
+              <button className="btn btn-danger form-control" onClick={()=> this.onDeleteClick(t)}>X</button>
+            </a>
           </td>
 
         </tr>
       )});
     }
     return (
+      <div>
         <table className="text-left table table-stripped">
           <thead>
             <tr>
@@ -38,7 +51,8 @@ export class List extends React.Component {
             {tbody}
           </tbody>
         </table>
-    );
+      </div>
+      );
 
   }
 }

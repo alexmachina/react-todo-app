@@ -1,0 +1,16 @@
+#task-form {
+  margin-top:20px;
+}
+
+#task-form-controls {
+  margin-top:10px;
+}
+
+#task-form-submit {
+  margin-right:5px;
+}
+
+.validation-message {
+  color:red;
+  margin-top:10px;
+}

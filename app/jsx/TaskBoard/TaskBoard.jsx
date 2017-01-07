@@ -45,6 +45,7 @@ export class TaskBoard extends React.Component{
 
   onEditClick(task) {
     this.setState({selectedTask: task});
+    console.log(task);
   }
 
   saveTask(task) {
@@ -84,6 +85,9 @@ export class TaskBoard extends React.Component{
     else
       this.updateTask(task);
 
+    this.setState({message: "Task Saved.", selectedTask:null});
+    
+
   }
 
   onNewClick() {
@@ -91,16 +95,25 @@ export class TaskBoard extends React.Component{
   }
 
   render () {
+    let message = this.state.message;
     return(
       <div>
         <h1>Taskboard</h1>
         <List tasks={this.state.tasks} onEditClick={this.onEditClick.bind(this)} onDeleteClick={this.onDeleteClick.bind(this)}/>
-      <div className="col-xs-12">
-          <button className="btn btn-primary row" onClick={this.onNewClick.bind(this)}>New Task</button>
+        <div className="col-xs-12">
+
+          <div className="col-xs-6">
+            <button className="btn btn-primary row" onClick={this.onNewClick.bind(this)}>New Task</button>        
+          </div>
+
+          <div className="col-xs-6 text-right">
+            <span className="">{message}</span>
+          </div>
+
         </div>
         <Form task={this.state.selectedTask} onFormSubmit={this.onFormSubmit.bind(this)}/>
-  
       </div>
+
     );
   }
 }

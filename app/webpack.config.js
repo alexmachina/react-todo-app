@@ -2,8 +2,18 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
+
+  plugins:[
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      "window.jQuery": "jquery"
+    })
+  ],
+
   entry: './main.js',
   output: {path: __dirname, filename:'bundle.js'},
+
   module:{
     loaders: [
       {
@@ -15,5 +25,5 @@ module.exports = {
         }
       }
     ]
-  }
+  },
 }
