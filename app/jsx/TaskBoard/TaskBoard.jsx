@@ -5,6 +5,8 @@ import $ from 'jquery';
 import {Form} from './Form.jsx';
 import {List} from './List.jsx';
 
+import {TaskRepository} from './Repository.js';
+
 
 export class TaskBoard extends React.Component{
   constructor(props) {
