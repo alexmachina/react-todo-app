@@ -53,7 +53,11 @@ export class Form extends React.Component {
         <div className="col-md-12 row" id="task-form">
           <form onSubmit={this.handleSubmit.bind(this)}>
             <div className="fieldset">
-              <TextInput validate={this.validateTask} label="Task" placeholder="new task" value={this.state.task.desc} onChange={this.handleTaskChange}/>
+              <TextInput 
+                validate={this.validateTask} 
+                label="Task" 
+                placeholder="new task" 
+                value={this.state.task.desc} onChange={this.handleTaskChange}/>
             </div>
             <div className="fieldset" id="task-form-controls">
               <input className="btn btn-primary" id="task-form-submit" type="submit" value="Save"/>

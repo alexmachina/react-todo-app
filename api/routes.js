@@ -7,8 +7,9 @@ router.get('/tasks', taskController.getAllTasks);
 router.post('/task', taskController.addTask);
 router.put('/task/:id', taskController.updateTask);
 router.delete('/task/:id', taskController.deleteTask);
+router.put('/task/:id/toggle', taskController.toggleTask);
 
-router.get('/user', userController.getUsers);
+router.get('/users', userController.getUsers);
 router.get('/user/:id', userController.getUser);
 router.post('/user', userController.addUser);
 router.put('/user/:id', userController.updateUser);

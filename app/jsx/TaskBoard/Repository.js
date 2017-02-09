@@ -30,6 +30,21 @@ class TaskRepository {
 
 
   }
+
+  setAsDone(id, cb) {
+    let url = `http://localhost:3000/task/${id}`;
+    let req = $.ajax({
+      method: 'PUT',
+      url: url
+    });
+    
+    req.done(() => {
+      this.refreshTasks();
+    });
+
+    req.fail(xhr => alert(xhr.responseText));
+  }
+
   saveTask(task, cb) {
     delete task._id;
     let req = $.post({
@@ -48,4 +63,3 @@ class TaskRepository {
 
 }
 
-export new TaskRepository();

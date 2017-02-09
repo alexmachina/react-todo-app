@@ -24,6 +24,16 @@ class taskController {
     })
   }
 
+  toggleTask(req, res) {
+    let find = taskModel.findById(req.params.id).exec();
+    find.then(task => {
+      task.done = !task.done;
+      task.save()
+        .then(() => res.send())
+        .catch(err => res.status(500).send(err));
+    })
+  }
+
   deleteTask(req, res) {
     taskModel.remove({'_id' : req.params.id}, (err) => {
       if(err) 

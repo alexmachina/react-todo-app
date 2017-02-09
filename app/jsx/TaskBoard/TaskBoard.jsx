@@ -5,7 +5,6 @@ import $ from 'jquery';
 import {Form} from './Form.jsx';
 import {List} from './List.jsx';
 
-import {TaskRepository} from './Repository.js';
 
 
 export class TaskBoard extends React.Component{
@@ -50,8 +49,26 @@ export class TaskBoard extends React.Component{
     console.log(task);
   }
 
+  onTaskToggle(id) {
+    let req = $.ajax({
+      method: 'PUT',
+      url: `http://localhost:3000/task/${id}/toggle`
+    })
+
+    req.done(() => {
+      this.refreshTasks();
+    })
+
+    req.fail(xhr => {
+      alert(xhr.responseText);
+      
+    })
+  }
+
   saveTask(task) {
     delete task._id;
+    task.done = false;
+
     let req = $.post({
       url:'http://localhost:3000/task',
       data: task
@@ -101,7 +118,11 @@ export class TaskBoard extends React.Component{
     return(
       <div>
         <h1>Taskboard</h1>
-        <List tasks={this.state.tasks} onEditClick={this.onEditClick.bind(this)} onDeleteClick={this.onDeleteClick.bind(this)}/>
+        <List tasks={this.state.tasks} 
+          onEditClick={this.onEditClick.bind(this)} 
+          onDeleteClick={this.onDeleteClick.bind(this)}
+          onTaskToggle={this.onTaskToggle.bind(this)}
+        />
         <div className="col-xs-12">
 
           <div className="col-xs-6">
